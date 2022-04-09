@@ -2,13 +2,6 @@ package com.example.algorithmvisualization.SortingAlgorithms;
 
 public class QuickSort {
 
-    public static void swap(int i, int j, int[] array) {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-    }
-
-
     public static void quickSort(int[] array, int startIdx, int endIdx) {
         if (startIdx >= endIdx) {
             return;
@@ -20,7 +13,7 @@ public class QuickSort {
 
         while(rightIdx >= leftIdx) {
             if(array[leftIdx] > array[pivotIdx] && array[rightIdx] < array[pivotIdx]) {
-                swap(leftIdx, rightIdx, array);
+                ArrayData.swap(leftIdx, rightIdx, array);
             }
             if(array[leftIdx] <= array[pivotIdx]){
                 leftIdx += 1;
@@ -29,7 +22,7 @@ public class QuickSort {
                 rightIdx -= 1;
             }
         }
-        swap(pivotIdx, rightIdx, array);
+        ArrayData.swap(pivotIdx, rightIdx, array);
         boolean smallerLeftSubarray = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1);
         if(smallerLeftSubarray) {
             quickSort(array, startIdx, rightIdx - 1);
