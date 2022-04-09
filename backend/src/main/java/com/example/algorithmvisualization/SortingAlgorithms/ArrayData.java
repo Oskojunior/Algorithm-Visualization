@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class ArrayData {
 
-    public int[] fillArray() {
+    public static int[] fillArray() {
         Random random = new Random();
         int[] array = new int[310];
         for (int i = 0; i < 310; i++) {
