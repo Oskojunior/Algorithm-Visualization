@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlgorithmController {
 
     @GetMapping("/quicksort")
-    public int[] getQuickSortPatter() {
+    public int[] getQuickSortPattern() {
         int[] array = ArrayData.getInstance().getArray();
         return QuickSort.quickSortOut(array);
     }

@@ -2,7 +2,6 @@ package com.example.algorithmvisualization.Controllers;
 
 
 import com.example.algorithmvisualization.SortingAlgorithms.ArrayData;
-import com.example.algorithmvisualization.SortingAlgorithms.QuickSort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
