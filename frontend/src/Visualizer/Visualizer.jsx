@@ -1,5 +1,8 @@
 import React from "react";
+
 import './Visualizer.css'
+import axios from "axios";
+
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 1;
 
@@ -24,15 +27,19 @@ export default class Visualizer extends React.Component{
     }
 
     resetArray() {
-        let array = [];
-        for (let i = 0; i < NUMBER_OF_ARRAY_BARS; i++) {
-            array.push(randomIntFromInterval(5, 730));
-        }
-        this.setState({array});
+        axios.get('http://localhost:8080/api/array_data/reset', {responseType: 'json'})
+            .then((response) => {
+                let array = response.data
+                this.setState({array})
+            })
     }
 
     quickSort() {
-
+        axios.get('http://localhost:8080/api/algorithms/quicksort', {responseType: 'json'})
+            .then((response) => {
+                let array = response.data
+                this.setState({array})
+            })
     }
 
     render() {

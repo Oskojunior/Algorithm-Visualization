@@ -1,5 +1,6 @@
 package com.example.algorithmvisualization.Controllers;
 
+
 import com.example.algorithmvisualization.SortingAlgorithms.ArrayData;
 import com.example.algorithmvisualization.SortingAlgorithms.QuickSort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,12 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/algorithms")
-public class AlgorithmController {
+@RequestMapping("/api/array_data")
+public class ArrayDataController {
 
-    @GetMapping("/quicksort")
-    public int[] getQuickSortPatter() {
-        int[] array = ArrayData.getInstance().getArray();
-        return QuickSort.quickSortOut(array);
+    @GetMapping("/reset")
+    public int[] getData() {
+        return ArrayData.getInstance().fillArray();
     }
 }
