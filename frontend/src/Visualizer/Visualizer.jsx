@@ -48,8 +48,8 @@ export default class Visualizer extends React.Component{
     }
 
     animate() {
+        const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < this.animations.length; i++) {
-            const arrayBars = document.getElementsByClassName('array-bar');
             if (this.animations[i].action === 0) {
                 let barOneIdx = this.animations[i].numA
                 let barTwoIdx = this.animations[i].numB
@@ -87,24 +87,25 @@ export default class Visualizer extends React.Component{
                 }, i * 3);
             } else if (this.animations[i].action === 1) {
                 setTimeout(() => {
+                    console.log("Jestem w 1")
                     let pivotIdx = this.animations[i].pivot
                     let barTwoIdx = this.animations[i].numB
-                    let pivotNewHeight = arrayBars[barTwoIdx];
-                    let barTwoNewHeight = arrayBars[pivotIdx];
-                    arrayBars[pivotIdx].style.height = `${pivotNewHeight}px`
+                    let pivotNewHeight = arrayBars[barTwoIdx].style.height;
+                    let barTwoNewHeight = arrayBars[pivotIdx].style.height;
+                    arrayBars[pivotIdx].style.height = `${pivotNewHeight}`
                     arrayBars[pivotIdx].style.backgroundColor = 'blue'
-                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}px`
+                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}`
                     arrayBars[barTwoIdx].style.backgroundColor = 'green'
                 }, i * 3)
             } else if (this.animations[i].action === 2) {
                 setTimeout(() => {
                     let barOneIdx = this.animations[i].numA
                     let barTwoIdx = this.animations[i].numB
-                    let barOneNewHeight = arrayBars[barTwoIdx];
-                    let barTwoNewHeight = arrayBars[barOneIdx];
-                    arrayBars[barOneIdx].style.height = `${barOneNewHeight}px`
+                    let barOneNewHeight = arrayBars[barTwoIdx].style.height;
+                    let barTwoNewHeight = arrayBars[barOneIdx].style.height;
+                    arrayBars[barOneIdx].style.height = `${barOneNewHeight}`
                     arrayBars[barOneIdx].style.backgroundColor = 'blue'
-                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}px`
+                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}`
                     arrayBars[barTwoIdx].style.backgroundColor = 'blue'
                 }, i * 3)
             }
