@@ -33,7 +33,11 @@ export default class Visualizer extends React.Component{
             .then((response) => {
                 let array = response.data
                 this.setState({array})
-            })
+                const arrayBars = document.getElementsByClassName('array-bar');
+                for (let i = 0; i < arrayBars.length; i++) {
+                        arrayBars[i].style.backgroundColor = 'crimson'
+                }
+            } )
     }
 
     quickSort() {
@@ -45,6 +49,16 @@ export default class Visualizer extends React.Component{
                 })
                 this.animate()
             })
+    }
+
+    confirm() {
+        const arrayBars = document.getElementsByClassName('array-bar');
+
+        for (let i = 0; i < arrayBars.length; i++) {
+            setTimeout(() => {
+                arrayBars[i].style.backgroundColor = 'green'
+            }, i * 3)
+        }
     }
 
     animate() {
@@ -62,7 +76,8 @@ export default class Visualizer extends React.Component{
                             barOneStyle.backgroundColor = 'blue'
                             barTwoStyle.backgroundColor = 'blue'
                             barThreeStyle.backgroundColor = 'green'
-                        } else {
+                        }
+                        else {
                             if (this.animations[i].numA !== this.animations[i - 1].numA) {
                                 let previousBar = this.animations[i - 1].numA
                                 if(previousBar != 310) {
@@ -111,6 +126,11 @@ export default class Visualizer extends React.Component{
                         let barTwoNewHeight = barOneStyle.height;
                         barOneStyle.height = `${barOneNewHeight}`
                         barTwoStyle.height = `${barTwoNewHeight}`
+                    }, i * 3)
+                }
+                if (i === this.animations.length - 1) {
+                    setTimeout(() => {
+                        this.confirm()
                     }, i * 3)
                 }
         }
