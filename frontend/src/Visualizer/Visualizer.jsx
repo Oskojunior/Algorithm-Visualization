@@ -87,7 +87,6 @@ export default class Visualizer extends React.Component{
                 }, i * 3);
             } else if (this.animations[i].action === 1) {
                 setTimeout(() => {
-                    console.log("Jestem w 1")
                     let pivotIdx = this.animations[i].pivot
                     let barTwoIdx = this.animations[i].numB
                     let pivotNewHeight = arrayBars[barTwoIdx].style.height;
