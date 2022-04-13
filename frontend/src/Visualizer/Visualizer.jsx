@@ -50,64 +50,69 @@ export default class Visualizer extends React.Component{
     animate() {
         const arrayBars = document.getElementsByClassName('array-bar');
         for (let i = 0; i < this.animations.length; i++) {
-            if (this.animations[i].action === 0) {
-                let barOneIdx = this.animations[i].numA
-                let barTwoIdx = this.animations[i].numB
-                let barThreeIdx = this.animations[i].pivot
-                let barOneStyle = arrayBars[barOneIdx].style
-                let barTwoStyle = arrayBars[barTwoIdx].style
-                let barThreeStyle = arrayBars[barThreeIdx].style
-                setTimeout(() => {
-                    if (i === 0) {
-                        barOneStyle.backgroundColor = 'blue'
-                        barTwoStyle.backgroundColor = 'blue'
-                        barThreeStyle.backgroundColor = 'green'
-                    } else {
-                        if (this.animations[i].numA !== this.animations[i - 1].numA) {
-                            let previousBar = this.animations[i - 1].numA
-                            arrayBars[previousBar].style.backgroundColor = 'crimson'
+            let barOneIdx = this.animations[i].numA
+            let barTwoIdx = this.animations[i].numB
+            let barThreeIdx = this.animations[i].pivot
+                if (this.animations[i].action === 0) {
+                    let barTwoStyle = arrayBars[barTwoIdx].style
+                    let barThreeStyle = arrayBars[barThreeIdx].style
+                    setTimeout(() => {
+                        if (i === 0) {
+                            let barOneStyle = arrayBars[barOneIdx].style
                             barOneStyle.backgroundColor = 'blue'
-                        } else
-                            barOneStyle.backgroundColor = 'blue'
-
-                        if (this.animations[i].numB !== this.animations[i - 1].numB) {
-                            let previousBar = this.animations[i - 1].numB
-                            arrayBars[previousBar].style.backgroundColor = 'crimson'
                             barTwoStyle.backgroundColor = 'blue'
-                        } else
-                            barTwoStyle.backgroundColor = 'blue'
+                            barThreeStyle.backgroundColor = 'green'
+                        } else {
+                            if (this.animations[i].numA !== this.animations[i - 1].numA) {
+                                let previousBar = this.animations[i - 1].numA
+                                if(previousBar != 310) {
+                                    arrayBars[previousBar].style.backgroundColor = 'crimson'
+                                }
+                                if(barOneIdx != 310) {
+                                    let barOneStyle = arrayBars[barOneIdx].style
+                                    barOneStyle.backgroundColor = 'blue'
+                                }
+                            } else {
+                                let barOneStyle = arrayBars[barOneIdx].style
+                                barOneStyle.backgroundColor = 'blue'
+                            }
 
-                        if (this.animations[i].pivot !== this.animations[i - 1].pivot) {
-                            let previousBar = this.animations[i - 1].pivot
-                            arrayBars[previousBar].style.backgroundColor = 'crimson'
-                            barThreeStyle.backgroundColor = 'green'
-                        } else
-                            barThreeStyle.backgroundColor = 'green'
-                    }
-                }, i * 3);
-            } else if (this.animations[i].action === 1) {
-                setTimeout(() => {
-                    let pivotIdx = this.animations[i].pivot
-                    let barTwoIdx = this.animations[i].numB
-                    let pivotNewHeight = arrayBars[barTwoIdx].style.height;
-                    let barTwoNewHeight = arrayBars[pivotIdx].style.height;
-                    arrayBars[pivotIdx].style.height = `${pivotNewHeight}`
-                    arrayBars[pivotIdx].style.backgroundColor = 'blue'
-                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}`
-                    arrayBars[barTwoIdx].style.backgroundColor = 'green'
-                }, i * 3)
-            } else if (this.animations[i].action === 2) {
-                setTimeout(() => {
-                    let barOneIdx = this.animations[i].numA
-                    let barTwoIdx = this.animations[i].numB
-                    let barOneNewHeight = arrayBars[barTwoIdx].style.height;
-                    let barTwoNewHeight = arrayBars[barOneIdx].style.height;
-                    arrayBars[barOneIdx].style.height = `${barOneNewHeight}`
-                    arrayBars[barOneIdx].style.backgroundColor = 'blue'
-                    arrayBars[barTwoIdx].style.height = `${barTwoNewHeight}`
-                    arrayBars[barTwoIdx].style.backgroundColor = 'blue'
-                }, i * 3)
-            }
+                            if (this.animations[i].numB !== this.animations[i - 1].numB) {
+                                let previousBar = this.animations[i - 1].numB
+                                arrayBars[previousBar].style.backgroundColor = 'crimson'
+                                barTwoStyle.backgroundColor = 'blue'
+                            } else
+                                barTwoStyle.backgroundColor = 'blue'
+
+                            if (this.animations[i].pivot !== this.animations[i - 1].pivot) {
+                                let previousBar = this.animations[i - 1].pivot
+                                arrayBars[previousBar].style.backgroundColor = 'crimson'
+                                barThreeStyle.backgroundColor = 'green'
+                            } else
+                                barThreeStyle.backgroundColor = 'green'
+                        }
+                    }, i * 3);
+                } else if (this.animations[i].action === 1) {
+                    let barTwoStyle = arrayBars[barTwoIdx].style
+                    let barThreeStyle = arrayBars[barThreeIdx].style
+                    setTimeout(() => {
+                        let pivotNewHeight = barTwoStyle.height;
+                        let barTwoNewHeight = barThreeStyle.height;
+                        barThreeStyle.height = `${pivotNewHeight}`
+                        barThreeStyle.backgroundColor = 'blue'
+                        barTwoStyle.height = `${barTwoNewHeight}`
+                        barTwoStyle.backgroundColor = 'green'
+                    }, i * 3)
+                } else if (this.animations[i].action === 2) {
+                    let barOneStyle = arrayBars[barOneIdx].style
+                    let barTwoStyle = arrayBars[barTwoIdx].style
+                    setTimeout(() => {
+                        let barOneNewHeight = barTwoStyle.height;
+                        let barTwoNewHeight = barOneStyle.height;
+                        barOneStyle.height = `${barOneNewHeight}`
+                        barTwoStyle.height = `${barTwoNewHeight}`
+                    }, i * 3)
+                }
         }
     }
 
